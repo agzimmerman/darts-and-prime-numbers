@@ -10,7 +10,7 @@ But for now the question is: Is this actually unusual? If someone were to place 
 
 
 Unless there is a mistake in this script (which is quite likely), the expected value is six, but the variance is four,
-so the observed count on a standard dart board is within one standard deviation, and therefore not so remarkable.
+so the observed count on a standard dart board is within two standard deviations, and therefore not so remarkable.
 
 
 
