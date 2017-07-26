@@ -52,16 +52,20 @@ for sample in range(1, large_number + 1):
     
     
     ''' Count the adjacted pairs that sum to prime numbers '''
+    prime_count = 0
+    
     for section in range(section_count):
     
         adjacent_section = (section + 1)%(section_count - 1) # Handle the periodic boundary condition
         
         if is_prime(numbers[section] + numbers[adjacent_section]):
         
-            sum += 1
+            prime_count += 1
             
 
     ''' Update the expected value, and report it regularly to check for convergence '''
+    sum += prime_count
+    
     expected_value = float(sum)/float(sample)
     
     if sample in report_at:
