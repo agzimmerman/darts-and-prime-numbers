@@ -9,14 +9,17 @@ But for now the question is: Is this actually unusual? If someone were to place 
 *** SPOILER ALERT!!! ***
 
 
-Unless there is a mistake in this script (which is quite likely), it is in fact highly unusual to have nine such pairs.
+Unless there is a mistake in this script (which is quite likely), the expected value is six, but the variance is four,
+so the observed count on a standard dart board is within one standard deviation, and therefore not so remarkable.
 
 
+
+Tested on Python 2.7.12 :: Anaconda custom (64-bit)
 '''
 
 import random
 import math
-
+import numpy
 
 ''' This is a function for checking if a number is prime, found at https://stackoverflow.com/questions/18833759/python-prime-number-checker'''
 def is_prime(n):
@@ -38,11 +41,11 @@ numbers = range(1, section_count + 1)
 
 ''' We employ the Monte Carlo integration method to estimate the expected value of the number of ajacted pairs that sum to a prime number.
 '''
-sum = 0
-
 large_number = 10000
 
 report_at = (100, 1000, 10000)
+
+prime_counts = []
 
 
 ''' Run the Monte Carlo loop '''
@@ -62,13 +65,11 @@ for sample in range(1, large_number + 1):
         
             prime_count += 1
             
+    prime_counts.append(prime_count)
+    
 
     ''' Update the expected value, and report it regularly to check for convergence '''
-    sum += prime_count
-    
-    expected_value = float(sum)/float(sample)
-    
     if sample in report_at:
     
-        print('With a sample size of '+str(sample)+', the expected value is '+str(expected_value))
+        print('With a sample size of '+str(sample)+', the expected value is '+str(numpy.mean(prime_counts))+' and the variance is '+str(numpy.var(prime_counts)))
         
